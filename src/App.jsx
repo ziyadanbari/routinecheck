@@ -14,7 +14,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import NotFound from "./pages/errors/404";
 import PasswordManagement from "./layouts/Dashboard/Settings/layouts/PasswordManagement";
 import CheckIfNotGoogle from "./Auth/CheckIfNotGoogle";
-import PersonalInformations from "./layouts/Dashboard/Settings/layouts/Personalinformations";
+import PersonalInformations from "./layouts/Dashboard/Settings/layouts/PersonalInformations";
 import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
 import Notifications from "./layouts/Dashboard/Settings/layouts/Notifications";
 import SendPasswordResetToken from "./pages/PasswordReset/SendPasswordResetToken";
