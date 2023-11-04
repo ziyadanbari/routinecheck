@@ -1,0 +1,50 @@
+{
+  "name": "routine-check",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite --port 80 --host",
+    "dev": "vite --port 3000 --host",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.14",
+    "@mui/joy": "^5.0.0-beta.11",
+    "@mui/material": "^5.14.14",
+    "axios": "^1.5.1",
+    "crypto-js": "^4.1.1",
+    "firebase": "^10.5.0",
+    "js-cookie": "^3.0.5",
+    "pickerjs": "^1.2.1",
+    "react": "^18.2.0",
+    "react-calendar": "^4.6.1",
+    "react-clock": "^4.5.1",
+    "react-cookie": "^6.1.1",
+    "react-datepicker": "^4.21.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "react-time-picker": "^6.5.2",
+    "react-toastify": "^9.1.3",
+    "react-validation": "^3.0.7",
+    "universal-cookie": "^6.1.1",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.5"
+  }
+}
