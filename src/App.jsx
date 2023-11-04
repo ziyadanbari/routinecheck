@@ -3,7 +3,7 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import RedirectIfNotLogin from "./Auth/RedirectIfNotLogin";
 import CheckAuth from "./Auth/CheckAuth";
-import RedirectIfLogin from "./Auth/redirectIfLogin";
+import RedirectIfLogin from "./Auth/RedirectIfLogin";
 import Dailyroutine from "./layouts/Dashboard/Dailyroutine";
 import Settings from "./layouts/Dashboard/Settings/Settings";
 import TimedRoutine from "./layouts/Dashboard/TimedRoutine";
