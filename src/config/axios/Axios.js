@@ -5,7 +5,6 @@ import Cookies from "universal-cookie";
 const token = new Cookies().get("routinechecksessiontoken");
 const instance = axios.create({
   baseURL: APIconfig.baseURL,
-  withCredentials: true,
   headers: {
     Authorization: token,
   },
