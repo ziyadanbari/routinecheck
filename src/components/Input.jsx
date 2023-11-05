@@ -9,7 +9,7 @@ const Input = React.forwardRef(
     {
       type = "text",
       styles,
-      value,
+      value = "",
       onChange,
       placeholder,
       onClick,

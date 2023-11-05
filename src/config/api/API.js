@@ -22,5 +22,6 @@ const APIconfig = {
   traitTON: "/traitTON",
   sendPasswordResetToken: "/sendresetpasswordtoken",
   resetPassword: "/resetpassword",
+  deleteAccount: "/deletemyaccount",
 };
 export { APIconfig };

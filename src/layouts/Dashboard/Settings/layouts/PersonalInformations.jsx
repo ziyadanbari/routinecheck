@@ -10,6 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "../../../../components/Button";
 import { APIconfig } from "../../../../config/api/API";
 import { instance } from "../../../../config/axios/Axios";
+import useCookie from "../../../../hooks/useCookie";
 function PersonalInformations() {
   const [previewImage, setPreviewImage] = useState("");
   const { userData, setUserData } = useContext(UserContext);
@@ -21,6 +22,9 @@ function PersonalInformations() {
   const emailRef = useRef(null);
   const usernameRef = useRef(null);
   const avatarRef = useRef(null);
+  const [value, setCookie, deleteCookie] = useCookie(
+    "routinechecksessiontoken"
+  );
   const handleFileChange = (e) => {
     const files = e.target.files;
     if (files.length === 0) return;
@@ -96,6 +100,27 @@ function PersonalInformations() {
       });
     }
   };
+  const deleteAccount = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await instance.get(APIconfig.deleteAccount);
+      toast.success(response.data?.message, {
+        theme: "dark",
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+      deleteCookie();
+      setTimeout(() => {
+        location.pathname = "/";
+      }, 1500);
+    } catch (err) {
+      toast.error(err.response?.data?.message, {
+        theme: "dark",
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    }
+  };
   return (
     <div className="mx-5">
       <form className="space-y-5" onSubmit={SaveHandler}>
@@ -105,7 +130,11 @@ function PersonalInformations() {
               <div>
                 <Avatar
                   src={avatar instanceof Object ? previewImage : avatar}
-                  sx={{ width: 80, height: 80 }}
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    background: "rgba(50,50,50,.4)",
+                  }}
                 />
               </div>
               <div className="w-2 h-2 p-3 bg-black rounded-full border-2 border-white flex justify-center items-center absolute top-0 right-0">
@@ -138,7 +167,7 @@ function PersonalInformations() {
               </div>
               <div>
                 <div
-                  className="flex bg-red-500 w-full p-2 rounded-full justify-center items-center cursor-pointer"
+                  className="flex bg-red-500 hover:bg-red-600 w-full p-2 rounded-full justify-center items-center cursor-pointer"
                   onClick={deleteAvatar}>
                   <div className="w-8 ml-4">
                     <DeleteIcon />
@@ -194,32 +223,41 @@ function PersonalInformations() {
               )}
             </div>
           </div>
-          <div className="flex justify-end space-x-2">
-            {!userData.isVerified && (
+          <div className="flex flex-col-reverse items-end space-x-2 gap-4">
+            <div className="flex space-x-2 flex-wrap md:flex-row flex-row-reverse gap-3">
+              <Button
+                text="Delete My Account"
+                styles={"bg-red-500 hover:bg-red-600"}
+                onClickHandler={deleteAccount}
+              />
+              {!userData.isVerified && (
+                <div>
+                  <Button
+                    text={"Verify Email"}
+                    styles={
+                      "text-black bg-orange-500 hover:bg-orange-600 text-white"
+                    }
+                    onClickHandler={sendEmail}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="flex space-x-2">
               <div>
                 <Button
-                  text={"Verify Email"}
-                  styles={
-                    "text-black bg-orange-500 hover:bg-orange-600 text-white"
-                  }
-                  onClickHandler={sendEmail}
+                  text={"Cancel"}
+                  styles={"text-black bg-gray-600 hover:bg-gray-700"}
+                  onClickHandler={CancelHandler}
                 />
               </div>
-            )}
-            <div>
-              <Button
-                text={"Cancel"}
-                styles={"text-black bg-gray-600 hover:bg-gray-700"}
-                onClickHandler={CancelHandler}
-              />
-            </div>
-            <div>
-              <Button
-                text={"Save"}
-                styles={
-                  "text-black bg-green-600 hover:bg-green-700 cursor-pointer"
-                }
-              />
+              <div>
+                <Button
+                  text={"Save"}
+                  styles={
+                    "text-black bg-green-600 hover:bg-green-700 cursor-pointer"
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>

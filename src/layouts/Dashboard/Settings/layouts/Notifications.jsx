@@ -53,13 +53,13 @@ export default function Notifications() {
   });
   const [whatsappNotification, setWhatsappNotification] = useState({
     ...userData.TONS.whatsapp,
+    title: "whatsapp",
     numberNotified: `+${userData.TONS.whatsapp.numberNotified || ""}`,
   });
   const changeActiveEmail = async (e) => {
     try {
       const response = await instance.post(APIconfig.traitTON, {
-        option: "email",
-        active: e.target.checked,
+        options: [{ activated: e.target.checked, title: "email" }],
       });
       setUserData((e) => {
         return { ...e, TONS: { ...response.data.TONS } };
@@ -75,8 +75,12 @@ export default function Notifications() {
   const changeActiveWhatsapp = async (e) => {
     try {
       const response = await instance.post(APIconfig.traitTON, {
-        option: "whatsapp",
-        active: e.target.checked,
+        options: [
+          {
+            title: "whatsapp",
+            activated: e.target.checked,
+          },
+        ],
       });
       setUserData((e) => {
         return { ...e, TONS: response.data.TONS };
@@ -93,27 +97,27 @@ export default function Notifications() {
     e.preventDefault();
     try {
       const response = await instance.post(APIconfig.traitTON, {
-        option: "email",
-        ...emailNotification,
-        notified: emailNotification.emailNotified,
-        active: emailNotification.activated,
-        activated: undefined,
-        emailNotified: undefined,
-      });
-      const response2 = await instance.post(APIconfig.traitTON, {
-        option: "whatsapp",
-        ...whatsappNotification,
-        notified: whatsappNotification.numberNotified,
-        active: whatsappNotification.activated,
-        numberNotified: undefined,
-        activated: undefined,
+        options: [
+          {
+            ...emailNotification,
+            title: "email",
+            notified: emailNotification.emailNotified,
+            emailNotified: undefined,
+          },
+          {
+            ...whatsappNotification,
+            title: "whatsapp",
+            notified: whatsappNotification.numberNotified,
+            numberNotified: undefined,
+          },
+        ],
       });
       setUserData((e) => {
         return {
           ...e,
           TONS: response
             ? { ...response.data.TONS }
-            : { ...response2.data.TONS },
+            : { ...response.data.TONS },
         };
       });
       toast.info("Changed", {
@@ -172,7 +176,12 @@ export default function Notifications() {
         </div>
         <div className="flex justify-end space-x-5">
           <div>
-            <Button text={"cancel"} />
+            <Button
+              text={"cancel"}
+              onClickHandler={(e) => {
+                e.preventDefault();
+              }}
+            />
           </div>
           <div>
             <Button

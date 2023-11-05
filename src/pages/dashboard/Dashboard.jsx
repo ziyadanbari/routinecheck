@@ -40,9 +40,11 @@ export default function Dashboard() {
   return (
     <div className="dashboard">
       {!user.isVerified && showAlert && (
-        <div className=" bg-orange-500 text-white w-full z-50 relative top-0 left-0 h-[36px] flex items-center justify-center">
-          <div className="fixed font-semibold capitalize space-x-5 md:text-base text-sm">
-            <span>Verify your email to enable email notifications. </span>
+        <div className=" bg-orange-500 text-white w-full z-50 relative top-0 left-0 h-[36px] flex items-center md:justify-center justify-between pl-2">
+          <div className="fixed font-semibold capitalize md:space-x-5 space-x-1 md:text-base text-xs">
+            <span className="inline">
+              Verify your email to enable email notifications.{" "}
+            </span>
             <span className="inline-flex justify-center items-center">
               <button
                 className="px-2 rounded-md border-2 border-white hover:bg-[#6f6f6f66]"
