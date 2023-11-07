@@ -25,12 +25,12 @@ body,
 .dashboard {
   background: url("../assets/blurry-gradient-haikei (3).png");
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-position: auto;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .burger {
